@@ -1,6 +1,7 @@
 # put your code here.
 
 import re
+from collections import Counter
 import sys
 
 def word_count(filename):
@@ -16,13 +17,20 @@ def word_count(filename):
 		for word in line_list:
 			words.append(word)
 
-	dict_2 = {}
+	# dict_2 = {}
 
+	# for word in words:
+	# 	dict_2[word.lower()] = dict_2.get(word.lower(), 0) + 1
+	cnt = Counter()
 	for word in words:
-		dict_2[word.lower()] = dict_2.get(word.lower(), 0) + 1
+		cnt[word] += 1
 
-	for key, value in dict_2.items():
-		print("{} {}".format(key,value))
+	cnt_key = sorted(cnt)
+
+	print(cnt_key)
+
+	for key in cnt_key:
+		print("{} {}".format(key,cnt[key]))
 
 
 word_count(sys.argv[1])
